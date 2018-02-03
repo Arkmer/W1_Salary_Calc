@@ -68,16 +68,20 @@ function rankTerp(){
   return lRankMon;
 }
 function fLocationController(){
-  
+  var outputSoldier = $('#outputSoldier');
+  outputSoldier.empty();
+  var soldierHeadings = '<tr id="outputLabels"><td>Rank</td><td>Name</td><td>MOS</td><td>Base Pay</td><td>Annual</td></tr>';
+  outputSoldier.append(soldierHeadings);
   for(i=0; i<soldierDisp.length; i++){
     var stringToAppend = '<tr class="soldier">';
-    stringToAppend += '<td>'+soldierDisp[i].rankGrade+'<td>';
-    stringToAppend += '<td>'+soldierDisp[i].lastName+', '+soldierDisp[i].firstName+'<td>';
-    stringToAppend += '<td>'+soldierDisp[i].mos+'<td>';
-    stringToAppend += '<td>'+soldierDisp[i].monthly+'<td>';
-    stringToAppend += '<td>'+soldierDisp[i].yearly+'<td>';
+    stringToAppend += '<td class="output">'+soldierDisp[i].rankGrade+'</td>';
+    stringToAppend += '<td class="output">'+soldierDisp[i].lastName+', '+soldierDisp[i].firstName+'</td>';
+    stringToAppend += '<td class="output">'+soldierDisp[i].mos+'</td>';
+    stringToAppend += '<td class="output">'+soldierDisp[i].monthly+'</td>';
+    stringToAppend += '<td class="output">'+soldierDisp[i].yearly+'</td>';
+    stringToAppend += '<td><button type="button" name="button">Remove</button></td>'
     stringToAppend += '</tr>';
-
+    outputSoldier.append(stringToAppend);
   }
 }
 // Delete button that removes an employee
