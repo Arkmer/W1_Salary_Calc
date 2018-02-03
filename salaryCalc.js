@@ -13,10 +13,13 @@ function fColloectData(){
     rankGrade: rankTerp(),
     years: $('#ipYears').val(),
     mos: $('#ipMOS').val(),
-    dodid: $('#ipDoDID').val()
+    dodid: $('#ipDoDID').val(),
+    monthly: '$$$.$$',
+    yearly: '$$$$.$$'
   }
   soldierDisp.push(Soldier);
   console.log(soldierDisp);
+  fLocationController();
 }
 
 function rankTerp(){
@@ -64,6 +67,18 @@ function rankTerp(){
   console.log(lRankMon);
   return lRankMon;
 }
+function fLocationController(){
+  
+  for(i=0; i<soldierDisp.length; i++){
+    var stringToAppend = '<tr class="soldier">';
+    stringToAppend += '<td>'+soldierDisp[i].rankGrade+'<td>';
+    stringToAppend += '<td>'+soldierDisp[i].lastName+', '+soldierDisp[i].firstName+'<td>';
+    stringToAppend += '<td>'+soldierDisp[i].mos+'<td>';
+    stringToAppend += '<td>'+soldierDisp[i].monthly+'<td>';
+    stringToAppend += '<td>'+soldierDisp[i].yearly+'<td>';
+    stringToAppend += '</tr>';
 
+  }
+}
 // Delete button that removes an employee
 // STYLE THE PAGE
