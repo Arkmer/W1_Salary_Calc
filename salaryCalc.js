@@ -84,5 +84,6 @@ function fLocationController(){
     outputSoldier.append(stringToAppend);
   }
 }
+
 // Delete button that removes an employee
 // STYLE THE PAGE
