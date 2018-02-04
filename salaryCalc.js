@@ -10,19 +10,20 @@ function fColloectData(){
   var Soldier = {
     firstName: $('#ipNameFirst').val(),
     lastName: $('#ipNameLast').val(),
-    rankGrade: rankTerp(),
+    rankGrade: fRankTerp(),
     years: $('#ipYears').val(),
     mos: $('#ipMOS').val(),
     dodid: $('#ipDoDID').val(),
-    monthly: '$$$.$$',
-    yearly: '$$$$.$$'
+    monthly: fMonthlyCalc(), // currently using incorrect numbers
+    yearly: fYearlyCalc() // currently using incorrect numbers
   }
   soldierDisp.push(Soldier);
   console.log(soldierDisp);
   fLocationController();
+  fExpendCalc();
 }
 
-function rankTerp(){
+function fRankTerp(){
   var lRankMon;
   switch (parseInt($('#rankGrade').val())) {
     case 1:
@@ -84,6 +85,25 @@ function fLocationController(){
     outputSoldier.append(stringToAppend);
   }
 }
-
+function fMonthlyCalc(){
+  var tempMonthly = parseInt($('#rankGrade').val())*50*parseInt($('#ipYears').val());
+  var outputMonthly = '$'+tempMonthly+'.00';
+  return outputMonthly;
+}
+function fYearlyCalc(){
+  var tempYearly = parseInt($('#rankGrade').val())*50*parseInt($('#ipYears').val())*12;
+  var outputYearly = '$'+tempYearly+'.00';
+  return outputYearly;
+}
+function fExpendCalc(){
+  var expendLoc = $('#expendLoc');
+  expendLoc.empty();
+  var expend = 0;
+  for(i=0; i<soldierDisp.length; i++){
+    expend+=$('#rankGrade').val()*50*parseInt($('#ipYears').val())*12;
+  }
+  console.log(expend);
+  expendLoc.append('Annual Pay Expenditure: '+expend)
+}
 // Delete button that removes an employee
 // STYLE THE PAGE
