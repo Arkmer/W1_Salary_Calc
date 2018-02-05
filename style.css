@@ -5,3 +5,61 @@
   padding-left: 2px;
   padding-right: 2px;
 }
+#inputTable{
+  width: 100%;
+}
+#inputLebels{
+  color: #FFFFFF;
+  background-color: #000000;
+}
+#outputSoldier{
+  width: 100%;
+  background-color: #DDDDDD;
+}
+#outputLabels{
+  background-color: #000000;
+}
+#rank{
+  width: 5%;
+  color: #FFFFFF;
+}
+#name{
+  width: 52%;
+  color: #FFFFFF;
+}
+#mos{
+  width: 5%;
+  color: #FFFFFF;
+}
+#base{
+  width: 10%;
+  color: #FFFFFF;
+}
+#annual{
+  width: 10%;
+  color: #FFFFFF;
+}
+#id{
+  width: 10%;
+  color: #FFFFFF;
+}
+#buttonColumn{
+  width: 8%;
+  color: #FFFFFF;
+}
+#inputTable{
+  background-color: #DDDDDD;
+}
+h1{
+  text-align: center;
+  font-family: helvetica;
+}
+input{
+  background-color: #DDDDDD;
+}
+select{
+  background-color: #DDDDDD;
+}
+body{
+  background-color: green;
+}

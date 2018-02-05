@@ -22,7 +22,6 @@ function fColloectData(){
   fLocationController();
   fExpendCalc();
 }
-
 function fRankTerp(){
   var lRankMon;
   switch (parseInt($('#rankGrade').val())) {
@@ -70,7 +69,7 @@ function fRankTerp(){
 function fLocationController(){
   var outputSoldier = $('#outputSoldier');
   outputSoldier.empty();
-  var soldierHeadings = '<tr id="outputLabels"><td>Rank</td><td>Name</td><td>MOS</td><td>Base Pay</td><td>Annual</td><td>DoDID</td></tr>';
+  var soldierHeadings = '<tr id="outputLabels"><td id="rank">Rank</td><td id="name">Name</td><td id="mos">MOS</td><td id="base">Base Pay</td><td id="annual">Annual</td><td id="id">DoDID</td><td id="buttonColumn">Buttons</td></tr>';
   outputSoldier.append(soldierHeadings);
   for(i=0; i<soldierDisp.length; i++){
     var stringToAppend = '<tr class="soldier">';
