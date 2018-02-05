@@ -2,6 +2,7 @@ $(document).ready(listeners);
 
 function listeners(){
   $('#ipSoldier').on('click', fColloectData);
+  $('#outputSoldier').on('click', '.remove', fRemove);
 }
 
 var soldierDisp = [];
@@ -18,7 +19,6 @@ function fColloectData(){
     yearly: '$'+fYearlyCalc()+'.00'
   }
   soldierDisp.push(Soldier);
-  console.log(soldierDisp);
   fLocationController();
   fExpendCalc();
 }
@@ -65,13 +65,12 @@ function fRankTerp(){
     case 13:
         lRankMon = 'SMA';
   }
-  console.log(lRankMon);
   return lRankMon;
 }
 function fLocationController(){
   var outputSoldier = $('#outputSoldier');
   outputSoldier.empty();
-  var soldierHeadings = '<tr id="outputLabels"><td>Rank</td><td>Name</td><td>MOS</td><td>Base Pay</td><td>Annual</td></tr>';
+  var soldierHeadings = '<tr id="outputLabels"><td>Rank</td><td>Name</td><td>MOS</td><td>Base Pay</td><td>Annual</td><td>DoDID</td></tr>';
   outputSoldier.append(soldierHeadings);
   for(i=0; i<soldierDisp.length; i++){
     var stringToAppend = '<tr class="soldier">';
@@ -80,7 +79,8 @@ function fLocationController(){
     stringToAppend += '<td class="output">'+soldierDisp[i].mos+'</td>';
     stringToAppend += '<td class="output">'+soldierDisp[i].monthly+'</td>';
     stringToAppend += '<td class="output">'+soldierDisp[i].yearly+'</td>';
-    stringToAppend += '<td><button type="button" name="button">Remove</button></td>'
+    stringToAppend += '<td class="output">'+soldierDisp[i].dodid+'</td>';
+    stringToAppend += '<td><button type="button" class="remove" data-ident="'+soldierDisp[i].dodid+'">Remove</button></td>'
     stringToAppend += '</tr>';
     outputSoldier.append(stringToAppend);
   }
@@ -96,6 +96,7 @@ function fMonthlyCalc(){
         break;
     case 3: // PFC
       switch (parseInt($('#ipYears').val())){
+        case 0:
         case 1:
           lMonthly = 257;
           break;
@@ -108,6 +109,7 @@ function fMonthlyCalc(){
       break;
     case 4: // SPC
       switch (parseInt($('#ipYears').val())){
+        case 0:
         case 1:
           lMonthly = 290;
           break;
@@ -126,6 +128,7 @@ function fMonthlyCalc(){
       break;
     case 5: // CPL
       switch (parseInt($('#ipYears').val())){
+        case 0:
         case 1:
           lMonthly = 290;
           break;
@@ -144,6 +147,7 @@ function fMonthlyCalc(){
       break;
     case 6: // SGT
       switch (parseInt($('#ipYears').val())){
+        case 0:
         case 1:
           lMonthly = 311;
           break;
@@ -174,6 +178,7 @@ function fMonthlyCalc(){
       break;
     case 7: // SSG
       switch (parseInt($('#ipYears').val())){
+        case 0:
         case 1:
           lMonthly = 340;
           break;
@@ -217,6 +222,7 @@ function fMonthlyCalc(){
       break;
     case 8: // SFC
       switch (parseInt($('#ipYears').val())){
+        case 0:
         case 1:
           lMonthly = 393;
           break;
@@ -276,6 +282,7 @@ function fMonthlyCalc(){
       break;
     case 9: // 1SG
       switch (parseInt($('#ipYears').val())){
+        case 0:
         case 1:
         case 2:
         case 3:
@@ -331,6 +338,7 @@ function fMonthlyCalc(){
       break;
     case 10: // MSG
       switch (parseInt($('#ipYears').val())){
+        case 0:
         case 1:
         case 2:
         case 3:
@@ -386,6 +394,7 @@ function fMonthlyCalc(){
       break;
     case 11: // SMG
       switch (parseInt($('#ipYears').val())){
+        case 0:
         case 1:
         case 2:
         case 3:
@@ -450,6 +459,7 @@ function fMonthlyCalc(){
       }
     case 12: // CSM
       switch (parseInt($('#ipYears').val())){
+        case 0:
         case 1:
         case 2:
         case 3:
@@ -526,8 +536,19 @@ function fExpendCalc(){
   for(i=0; i<soldierDisp.length; i++){
     expend+=fYearlyCalc();
   }
-  console.log(expend);
   expendLoc.append('Annual Pay Expenditure: '+expend+'.00')
 }
-// Delete button that removes an employee
+function fRemove(){
+  console.log($(this).data('ident'));
+  for(i=0; i<soldierDisp.length; i++){
+    if(soldierDisp[i].dodid == $(this).data('ident')){
+      soldierDisp.splice(i, 1);
+      console.log('after splice', soldierDisp);
+    }
+  }
+  fLocationController()
+  fExpendCalc()
+}
+
+// Delete button that removes an employee and updates expenditures
 // STYLE THE PAGE
